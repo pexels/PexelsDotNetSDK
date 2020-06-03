@@ -6,6 +6,8 @@ Before starting...
 Obtain a key from [https://www.pexels.com/api](https://www.pexels.com/api) by selecting 'Get Started'.
 View full API documentation here [https://www.pexels.com/api/documentation](https://www.pexels.com/api/documentation). 
 
+Install this via nuget: [https://www.nuget.org/packages/PexelsDotNetSDK/](https://www.nuget.org/packages/PexelsDotNetSDK/).
+
 ---
 
 ## Initialize Client:
