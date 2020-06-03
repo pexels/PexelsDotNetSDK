@@ -11,7 +11,7 @@ Install this via nuget: [https://www.nuget.org/packages/PexelsDotNetSDK/](https:
 ---
 
 ## Initialize Client:
-`var client = new PexelsClient("[YOUR_API_KEY]");`
+`var pexelsClient = new PexelsClient("[YOUR_API_KEY]");`
 
 ## Search Photos:
 `var result = await pexelsClient.SearchPhotosAsync("nature");`
