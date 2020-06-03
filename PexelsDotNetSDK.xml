@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PexelsDotNetSDK</name>
+    </assembly>
+    <members>
+        <member name="T:PexelsDotNetSDK.Api.PexelsClient">
+            <summary>
+            It is free to sign up and use the Pexels API. 
+            - Sign Up here: https://www.pexels.com 
+            - visit https://www.pexels.com/api/new/ to obtain your API key
+            </summary>
+        </member>
+        <member name="M:PexelsDotNetSDK.Api.PexelsClient.SearchPhotosAsync(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            This endpoint enables you to search Pexels for any topic that you would like. For example your query could be something broad like 'Nature', 
+            'Tigers', 'People'. Or it could be something specific like 'Group of people working'.
+            </summary>
+            <param name="query">The search query. Ocean, Tigers, Pears, etc.</param>
+            <param name="locale">The locale of the search you are performing. The current supported locales are: 'en-US' 'pt-BR' 'es-ES' 'ca-ES' 'de-DE' 'it-IT' 'fr-FR' 'sv-SE' 'id-ID' 'pl-PL' 'ja-JP' 'zh-TW' 'zh-CN' 'ko-KR' 'th-TH' 'nl-NL' 'hu-HU' 'vi-VN' 'cs-CZ' 'da-DK' 'fi-FI' 'uk-UA' 'el-GR' 'ro-RO' 'nb-NO' 'sk-SK' 'tr-TR' 'ru-RU'.</param>
+            <param name="page">The number of the page you are requesting. Default: 1</param>
+            <param name="pageSize">The number of results you are requesting per page. Default: 15 Max: 80</param>
+            <returns></returns>
+        </member>
+        <member name="M:PexelsDotNetSDK.Api.PexelsClient.CuratedPhotosAsync(System.Int32,System.Int32)">
+            <summary>
+            This endpoint enables you to receive real-time photos curated by the Pexels team.
+            We add at least one new photo per hour to our curated list so that you always get a changing selection of trending photos.
+            </summary>
+            <param name="page">The number of the page you are requesting. Default: 1</param>
+            <param name="pageSize">The number of results you are requesting per page. Default: 15 Max: 80</param>
+            <returns></returns>
+        </member>
+        <member name="M:PexelsDotNetSDK.Api.PexelsClient.GetPhotoAsync(System.Int32)">
+            <summary>
+            Retrieve a specific Photo from its id.
+            </summary>
+            <param name="id">The id of the photo you are requesting.</param>
+            <returns></returns>
+        </member>
+        <member name="M:PexelsDotNetSDK.Api.PexelsClient.SearchVideosAsync(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            This endpoint enables you to search Pexels for any topic that you would like. For example your query could be something broad like 'Nature', 
+            'Tigers', 'People'. Or it could be something specific like 'Group of people working'.
+            </summary>
+            <param name="query">The search query. Ocean, Tigers, Pears, etc.</param>
+            <param name="page">The number of the page you are requesting. Default: 1</param>
+            <param name="pageSize">The number of results you are requesting per page. Default: 15 Max: 80</param>
+            <param name="minWidth">The minimum width in pixels of the returned videos.</param>
+            <param name="minHeight">The minimum height in pixels of the returned videos.</param>
+            <param name="minDurationSecs">The minimum duration in seconds of the returned videos.</param>
+            <param name="maxDurationSecs">The maximum duration in seconds of the returned videos.</param>
+            <returns></returns>
+        </member>
+        <member name="M:PexelsDotNetSDK.Api.PexelsClient.PopularVideosAsync(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            This endpoint enables you to receive the current popular Pexels videos.
+            </summary>
+            <param name="page">The number of the page you are requesting. Default: 1</param>
+            <param name="pageSize">The number of results you are requesting per page. Default: 15 Max: 80</param>
+            <param name="minWidth">The minimum width in pixels of the returned videos.</param>
+            <param name="minHeight">The minimum height in pixels of the returned videos.</param>
+            <param name="minDurationSecs">The minimum duration in seconds of the returned videos.</param>
+            <param name="maxDurationSecs">The maximum duration in seconds of the returned videos.</param>
+            <returns></returns>
+        </member>
+        <member name="M:PexelsDotNetSDK.Api.PexelsClient.GetVideoAsync(System.Int32)">
+            <summary>
+            Retrieve a specific Video from its id.
+            </summary>
+            <param name="id">The id of the video you are requesting.</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
