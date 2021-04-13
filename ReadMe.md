@@ -30,3 +30,17 @@ Install this via nuget: [https://www.nuget.org/packages/PexelsDotNetSDK/](https:
 
 ## Get a Video:
 `var result = await pexelsClient.GetVideoAsync(2499611);`
+
+## Get Collections:
+
+Note: this is limited to collections belonging to the API user.
+
+`var result = await pexelsClient.CollectionsAsync();`
+
+## Get all media for a collection
+
+`var result = await pexelsClient.GetCollectionAsync("[your collection id]");`
+
+You can also filter by `type` i.e. `photos` or `videos`:
+
+`var result = await pexelsClient.GetCollectionAsync(id: "[your collection id]", type: "photos");`

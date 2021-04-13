@@ -23,6 +23,7 @@ namespace PexelsDotNetSDK.Api
         private static string _baseAddress = BaseConstants.API_URL;
         private static string _apiVersion = BaseConstants.API_URL_VERSION;
         private static int _timeoutSecs = BaseConstants.REQUEST_TIMEOUT_SECS;
+        private static string _version = BaseConstants.VERSION;
 
         public PexelsClient(string token)
         {
@@ -48,6 +49,7 @@ namespace PexelsDotNetSDK.Api
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("User-Agent", $"Pexels/.NET ({_version})");
         }
 
         protected virtual void SetupClientAuthHeader(HttpClient client)
@@ -80,6 +82,52 @@ namespace PexelsDotNetSDK.Api
             HttpResponseMessage response = await client.GetAsync(_requestUrl);
 
             var output = await ProcessResult<PhotoPage>(response);
+            output.rateLimit = ProcessRateLimits(response);
+
+            return output;
+        }
+
+        /// <summary>
+        /// This endpoint allows you to get all the collections you've created on Pexels.
+        /// </summary>
+        /// <param name="page">The number of the page you are requesting. Default: 1</param>
+        /// <param name="pageSize">The number of results you are requesting per page. Default: 15 Max: 80</param>
+        /// <returns></returns>
+        public async Task<CollectionPage> CollectionsAsync(int page = 1, int pageSize = 15)
+        {
+            if (pageSize > 80) pageSize = 80;
+            if (pageSize <= 0) pageSize = 1;
+            if (page <= 0) page = 1;
+
+            string _requestUrl = $"{_apiVersion}collections?page={page}&per_page={pageSize}";
+
+            HttpResponseMessage response = await client.GetAsync(_requestUrl);
+
+            var output = await ProcessResult<CollectionPage>(response);
+            output.rateLimit = ProcessRateLimits(response);
+
+            return output;
+        }
+
+        /// <summary>
+        /// This endpoint gets the media of a specific collection. 
+        /// </summary>
+        /// <param name="id">The Collection Id</param>
+        /// <param name="page">The number of the page you are requesting. Default: 1</param>
+        /// <param name="pageSize">The number of results you are requesting per page. Default: 15 Max: 80</param>
+        /// <param name="type">Filter results to a specific media type (`videos` or `photos`). Leave blank for all results.</param>
+        /// <returns></returns>
+        public async Task<CollectionMediaPage> GetCollectionAsync(string id, int page = 1, int pageSize = 15, string type = null)
+        {
+            if (pageSize > 80) pageSize = 80;
+            if (pageSize <= 0) pageSize = 1;
+            if (page <= 0) page = 1;
+            
+            string _requestUrl = $"{_apiVersion}collections/{id}?page={page}&per_page={pageSize}&type={type}";
+
+            HttpResponseMessage response = await client.GetAsync(_requestUrl);
+
+            var output = await ProcessResult<CollectionMediaPage>(response);
             output.rateLimit = ProcessRateLimits(response);
 
             return output;
