@@ -24,8 +24,9 @@ namespace PexelsDotNetSDK.Models
 
         [JsonPropertyName("photographer_url")]
         public string photographerUrl { get; set; }
+
         [JsonPropertyName("photographer_id")]
-        public string photographerId { get; set; }
+        public int photographerId { get; set; }
 
         [JsonPropertyName("src")]
         public Source source { get; set; }
