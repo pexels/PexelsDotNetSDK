@@ -33,5 +33,8 @@ namespace PexelsDotNetSDK.Models
 
         [JsonProperty("liked")]
         public bool liked { get; set; }
+
+        [JsonProperty("avg_color")]
+        public string avgColor { get; set; }
     }
 }

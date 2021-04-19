@@ -6,7 +6,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace PexelsDotNetSDK.Api
 {
@@ -24,6 +26,22 @@ namespace PexelsDotNetSDK.Api
         private static string _apiVersion = BaseConstants.API_URL_VERSION;
         private static int _timeoutSecs = BaseConstants.REQUEST_TIMEOUT_SECS;
         private static string _version = BaseConstants.VERSION;
+
+        private bool isValidColor(string color)
+        {
+            Regex regex = new Regex("^#(?:[0-9a-fA-F]{3}){1,2}$");
+            return BaseConstants.COLORS.Contains(color.ToLower()) || regex.IsMatch(color);
+        }
+
+        private bool isValidSize(string size)
+        {
+            return BaseConstants.SIZES.Contains(size.ToLower());
+        }
+
+        private bool isValidOrientation(string orientation)
+        {
+            return BaseConstants.ORIENTATIONS.Contains(orientation.ToLower());
+        }
 
         public PexelsClient(string token)
         {
@@ -63,11 +81,14 @@ namespace PexelsDotNetSDK.Api
         /// 'Tigers', 'People'. Or it could be something specific like 'Group of people working'.
         /// </summary>
         /// <param name="query">The search query. Ocean, Tigers, Pears, etc.</param>
+        /// <param name="orientation">Desired photo orientation. The current supported orientations are: landscape, portrait or square</param>
+        /// <param name="size">Minimum photo size. The current supported sizes are: large(24MP), medium(12MP) or small(4MP)</param>
+        /// <param name="color">Desired photo color. Supported colors: red, orange, yellow, green, turquoise, blue, violet, pink, brown, black, gray, white or any hexidecimal color code (eg. #ffffff)</param>
         /// <param name="locale">The locale of the search you are performing. The current supported locales are: 'en-US' 'pt-BR' 'es-ES' 'ca-ES' 'de-DE' 'it-IT' 'fr-FR' 'sv-SE' 'id-ID' 'pl-PL' 'ja-JP' 'zh-TW' 'zh-CN' 'ko-KR' 'th-TH' 'nl-NL' 'hu-HU' 'vi-VN' 'cs-CZ' 'da-DK' 'fi-FI' 'uk-UA' 'el-GR' 'ro-RO' 'nb-NO' 'sk-SK' 'tr-TR' 'ru-RU'.</param>
         /// <param name="page">The number of the page you are requesting. Default: 1</param>
         /// <param name="pageSize">The number of results you are requesting per page. Default: 15 Max: 80</param>
         /// <returns></returns>
-        public async Task<PhotoPage> SearchPhotosAsync(string query, string locale = "", int page = 1, int pageSize = 15)
+        public async Task<PhotoPage> SearchPhotosAsync(string query, string orientation = "", string size = "", string color = "", string locale = "", int page = 1, int pageSize = 15)
         {
             if (pageSize > 80) pageSize = 80;
             if (pageSize <= 0) pageSize = 1;
@@ -77,6 +98,18 @@ namespace PexelsDotNetSDK.Api
             if (!string.IsNullOrEmpty(locale))
             {
                 _requestUrl += $"&locale={locale}";
+            }
+            if (!string.IsNullOrEmpty(orientation) && isValidOrientation(orientation))
+            {
+                _requestUrl += $"&orientation={orientation}";
+            }
+            if (!string.IsNullOrEmpty(size) && isValidSize(size))
+            {
+                _requestUrl += $"&size={size}";
+            }
+            if (!string.IsNullOrEmpty(color) && isValidColor(color))
+            {
+                _requestUrl += $"&color={HttpUtility.UrlEncode(color)}";
             }
 
             HttpResponseMessage response = await client.GetAsync(_requestUrl);
@@ -175,36 +208,30 @@ namespace PexelsDotNetSDK.Api
         /// 'Tigers', 'People'. Or it could be something specific like 'Group of people working'.
         /// </summary>
         /// <param name="query">The search query. Ocean, Tigers, Pears, etc.</param>
+        /// <param name="orientation">Desired photo orientation. The current supported orientations are: landscape, portrait or square</param>
+        /// <param name="size">Minimum photo size. The current supported sizes are: large(24MP), medium(12MP) or small(4MP)</param>
+        /// <param name="locale">The locale of the search you are performing. The current supported locales are: 'en-US' 'pt-BR' 'es-ES' 'ca-ES' 'de-DE' 'it-IT' 'fr-FR' 'sv-SE' 'id-ID' 'pl-PL' 'ja-JP' 'zh-TW' 'zh-CN' 'ko-KR' 'th-TH' 'nl-NL' 'hu-HU' 'vi-VN' 'cs-CZ' 'da-DK' 'fi-FI' 'uk-UA' 'el-GR' 'ro-RO' 'nb-NO' 'sk-SK' 'tr-TR' 'ru-RU'.</param>
         /// <param name="page">The number of the page you are requesting. Default: 1</param>
         /// <param name="pageSize">The number of results you are requesting per page. Default: 15 Max: 80</param>
-        /// <param name="minWidth">The minimum width in pixels of the returned videos.</param>
-        /// <param name="minHeight">The minimum height in pixels of the returned videos.</param>
-        /// <param name="minDurationSecs">The minimum duration in seconds of the returned videos.</param>
-        /// <param name="maxDurationSecs">The maximum duration in seconds of the returned videos.</param>
         /// <returns></returns>
-        public async Task<VideoPage> SearchVideosAsync(string query, int page = 1, int pageSize = 15,
-            int minWidth = 0, int minHeight = 0, int minDurationSecs = 0, int maxDurationSecs = 0)
+        public async Task<VideoPage> SearchVideosAsync(string query, string orientation = "", string size = "", string locale = "", int page = 1, int pageSize = 15)
         {
             if (pageSize > 80) pageSize = 80;
             if (pageSize <= 0) pageSize = 1;
             if (page <= 0) page = 1;
 
             string _requestUrl = $"videos/search?query={Uri.EscapeDataString(query)}&page={page}&per_page={pageSize}";
-            if (minWidth > 0)
+            if (!string.IsNullOrEmpty(locale))
             {
-                _requestUrl += $"&min_width={minWidth}";
+                _requestUrl += $"&locale={locale}";
             }
-            if (minHeight > 0)
+            if (!string.IsNullOrEmpty(orientation) && isValidOrientation(orientation))
             {
-                _requestUrl += $"&min_height={minHeight}";
+                _requestUrl += $"&orientation={orientation}";
             }
-            if (minDurationSecs > 0)
+            if (!string.IsNullOrEmpty(size) && isValidSize(size))
             {
-                _requestUrl += $"&min_duration={minDurationSecs}";
-            }
-            if (maxDurationSecs > 0)
-            {
-                _requestUrl += $"&max_duration={maxDurationSecs}";
+                _requestUrl += $"&size={size}";
             }
 
             HttpResponseMessage response = await client.GetAsync(_requestUrl);
