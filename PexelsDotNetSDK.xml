@@ -22,6 +22,24 @@
             <param name="pageSize">The number of results you are requesting per page. Default: 15 Max: 80</param>
             <returns></returns>
         </member>
+        <member name="M:PexelsDotNetSDK.Api.PexelsClient.CollectionsAsync(System.Int32,System.Int32)">
+            <summary>
+            This endpoint allows you to get all the collections you've created on Pexels.
+            </summary>
+            <param name="page">The number of the page you are requesting. Default: 1</param>
+            <param name="pageSize">The number of results you are requesting per page. Default: 15 Max: 80</param>
+            <returns></returns>
+        </member>
+        <member name="M:PexelsDotNetSDK.Api.PexelsClient.GetCollectionAsync(System.String,System.Int32,System.Int32,System.String)">
+            <summary>
+            This endpoint gets the media of a specific collection. 
+            </summary>
+            <param name="id">The Collection Id</param>
+            <param name="page">The number of the page you are requesting. Default: 1</param>
+            <param name="pageSize">The number of results you are requesting per page. Default: 15 Max: 80</param>
+            <param name="type">Filter results to a specific media type (`videos` or `photos`). Leave blank for all results.</param>
+            <returns></returns>
+        </member>
         <member name="M:PexelsDotNetSDK.Api.PexelsClient.CuratedPhotosAsync(System.Int32,System.Int32)">
             <summary>
             This endpoint enables you to receive real-time photos curated by the Pexels team.
