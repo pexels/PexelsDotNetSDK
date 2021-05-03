@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,31 +8,31 @@ namespace PexelsDotNetSDK.Models
     public class Video
     {
 
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public int id { get; set; }
 
-        [JsonProperty("width")]
+        [JsonPropertyName("width")]
         public int width { get; set; }
 
-        [JsonProperty("height")]
+        [JsonPropertyName("height")]
         public int height { get; set; }
 
-        [JsonProperty("url")]
+        [JsonPropertyName("url")]
         public string url { get; set; }
 
-        [JsonProperty("image")]
+        [JsonPropertyName("image")]
         public string image { get; set; }
 
-        [JsonProperty("duration")]
+        [JsonPropertyName("duration")]
         public int duration { get; set; }
 
-        [JsonProperty("user")]
+        [JsonPropertyName("user")]
         public User user { get; set; }
 
-        [JsonProperty("video_files")]
+        [JsonPropertyName("video_files")]
         public IEnumerable<VideoFile> videoFiles { get; set; }
 
-        [JsonProperty("video_pictures")]
+        [JsonPropertyName("video_pictures")]
         public IEnumerable<VideoPicture> videoPictures { get; set; }
     }
 }
