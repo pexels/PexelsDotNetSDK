@@ -143,6 +143,28 @@ namespace PexelsDotNetSDK.Api
         }
 
         /// <summary>
+        /// This endpoint returns a list of featured collections
+        /// </summary>
+        /// <param name="page">The number of the page you are requesting. Default: 1</param>
+        /// <param name="pageSize">The number of results you are requesting per page. Default: 15 Max: 80</param>
+        /// <returns></returns>
+        public async Task<CollectionPage> FeaturedCollectionsAsync(int page = 1, int pageSize = 15)
+        {
+            if (pageSize > 80) pageSize = 80;
+            if (pageSize <= 0) pageSize = 1;
+            if (page <= 0) page = 1;
+
+            string _requestUrl = $"{_apiVersion}collections/featured?page={page}&per_page={pageSize}";
+
+            HttpResponseMessage response = await client.GetAsync(_requestUrl);
+
+            var output = await ProcessResult<CollectionPage>(response);
+            output.rateLimit = ProcessRateLimits(response);
+
+            return output;
+        }
+
+        /// <summary>
         /// This endpoint gets the media of a specific collection. 
         /// </summary>
         /// <param name="id">The Collection Id</param>
