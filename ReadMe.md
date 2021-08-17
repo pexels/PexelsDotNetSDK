@@ -37,6 +37,10 @@ Note: this is limited to collections belonging to the API user.
 
 `var result = await pexelsClient.CollectionsAsync();`
 
+## Get Featured Collections:
+
+`var result = await pexelsClient.FeaturedCollectionsAsync();`
+
 ## Get all media for a collection
 
 `var result = await pexelsClient.GetCollectionAsync("[your collection id]");`
