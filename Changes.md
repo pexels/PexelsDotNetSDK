@@ -1,5 +1,8 @@
 ﻿# Change log
 
+## 1.0.8
+* Added support for returning featured collections
+
 ## 1.0.7
 * Added `avgColor` (the average color of the photo) to the `Photo` object output
 * Added `orientation`, `size` and `color` to the Photo Search parameters.
