@@ -36,5 +36,8 @@ namespace PexelsDotNetSDK.Models
 
         [JsonProperty("avg_color")]
         public string avgColor { get; set; }
+        
+        [JsonProperty("alt")]
+        public string alt { get; set; }
     }
 }
