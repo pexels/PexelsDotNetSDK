@@ -349,7 +349,7 @@ namespace PexelsDotNetSDK.Api
                 {
                     Limit = Convert.ToInt64(_limitValue),
                     Remaining = Convert.ToInt64(_remainingValue),
-                    Reset = _resetValue == null ? start.AddMilliseconds(Convert.ToInt64(_resetValue)).ToLocalTime() : start.ToLocalTime()
+                    Reset = _resetValue != null ? start.AddMilliseconds(Convert.ToInt64(_resetValue)).ToLocalTime() : start.ToLocalTime()
                 };
 
                 return output;
