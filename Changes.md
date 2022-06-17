@@ -1,5 +1,9 @@
 ﻿# Change log
 
+## 1.0.9
+* Added support for 'alt' on the 'Photo' model (thanks @gorgsenegger)
+* Fix incorrect check / fallback on Rate Limit date (thanks @mattheww-freshview)
+
 ## 1.0.8
 * Added support for returning featured collections
 
