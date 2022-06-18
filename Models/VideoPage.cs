@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,7 +7,7 @@ namespace PexelsDotNetSDK.Models
 {
     public class VideoPage : Page
     {
-        [JsonProperty("videos")]
+        [JsonPropertyName("videos")]
         public IEnumerable<Video> videos { get; set; }
     }
 }

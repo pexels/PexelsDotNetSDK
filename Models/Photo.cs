@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,31 +7,31 @@ namespace PexelsDotNetSDK.Models
 {
     public class Photo
     {
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public int id { get; set; }
 
-        [JsonProperty("width")]
+        [JsonPropertyName("width")]
         public int width { get; set; }
 
-        [JsonProperty("height")]
+        [JsonPropertyName("height")]
         public int height { get; set; }
 
-        [JsonProperty("url")]
+        [JsonPropertyName("url")]
         public string url { get; set; }
 
-        [JsonProperty("photographer")]
+        [JsonPropertyName("photographer")]
         public string photographer { get; set; }
 
-        [JsonProperty("photographer_url")]
+        [JsonPropertyName("photographer_url")]
         public string photographerUrl { get; set; }
 
-        [JsonProperty("photographer_id")]
-        public string photographerId { get; set; }
+        [JsonPropertyName("photographer_id")]
+        public int photographerId { get; set; }
 
-        [JsonProperty("src")]
+        [JsonPropertyName("src")]
         public Source source { get; set; }
 
-        [JsonProperty("liked")]
+        [JsonPropertyName("liked")]
         public bool liked { get; set; }
 
         [JsonProperty("avg_color")]

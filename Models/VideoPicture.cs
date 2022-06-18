@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,13 +7,13 @@ namespace PexelsDotNetSDK.Models
 {
     public class VideoPicture
     {
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public int id { get; set; }
 
-        [JsonProperty("picture")]
+        [JsonPropertyName("picture")]
         public string picture { get; set; }
 
-        [JsonProperty("nr")]
+        [JsonPropertyName("nr")]
         public int nr { get; set; }
     }
 }
