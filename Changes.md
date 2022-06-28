@@ -1,5 +1,8 @@
 ﻿# Change log
 
+## 1.0.10
+* Upgrade Newtonsoft.Json to 13.0.1
+
 ## 1.0.9
 * Added support for 'alt' on the 'Photo' model (thanks @gorgsenegger)
 * Fix incorrect check / fallback on Rate Limit date (thanks @mattheww-freshview)
