@@ -8,7 +8,7 @@
     <Company>Pexels</Company>
     <Authors>Simon Gough</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>1.0.10</Version>
+    <Version>1.0.11</Version>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>https://github.com/pexels/PexelsDotNetSDK</PackageProjectUrl>
     <RepositoryUrl>https://github.com/pexels/PexelsDotNetSDK</RepositoryUrl>

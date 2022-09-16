@@ -1,5 +1,8 @@
 ﻿# Change log
 
+## 1.0.11
+* Added `fps` to `VideoFile` object output (where available)
+
 ## 1.0.10
 * Upgrade Newtonsoft.Json to 13.0.1
 
