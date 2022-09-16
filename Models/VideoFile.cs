@@ -23,6 +23,9 @@ namespace PexelsDotNetSDK.Models
         [JsonProperty("height")]
         public int? height { get; set; }
 
+        [JsonProperty("fps")]
+        public double? fps { get; set; }
+
         [JsonProperty("link")]
         public string link { get; set; }
     }
